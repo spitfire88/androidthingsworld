@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AudioRecorderApp</string>
+    <string name="button_send">Record</string>
 </resources>

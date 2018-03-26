@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import android.media.MediaPlayer;
+import android.view.View;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -22,6 +23,16 @@ public class MainActivity extends Activity {
     private MediaPlayer mPlayer = null;
     private MediaRecorder mRecorder = null;
     private static String mFileName = null;
+    android.widget.Button button = (android.widget.Button) findViewById(R.id.button_send);
+    private boolean pressed = false;
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.i(TAG, "Button Event Clicked");
+            pressed = !pressed;
+            onRecord(pressed);
+        }
+    };
 
     public MainActivity() {
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -33,6 +44,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupButton();
+        button.setOnClickListener(mOnClickListener);
     }
 
     @Override
